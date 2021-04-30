@@ -35,7 +35,7 @@ public class FamilytreeNeo4jApplication {
 
             log.info("Antes de linkar com Neo4j...");
 
-            family.stream().forEach(person -> log.info("\t" + person.toString()));
+            family.forEach(person -> log.info("\t" + person.toString()));
 
             personRepository.save(eder);
             personRepository.save(gleiciane);
@@ -63,12 +63,11 @@ public class FamilytreeNeo4jApplication {
             personRepository.save(gleiciane);
 
             log.info("Print cada pessoa por nome...");
-            family.stream().forEach(person -> log.info(
-                    "\t" + personRepository.findByName(person.getName()).toString()));
+            personRepository.findAll().forEach(person -> log.info("\t" + person));
 
             family = personRepository.findByFamilyMemberName(eder.getName());
             log.info("Pessoas que tem o eder na familia...");
-            family.stream().forEach(person -> log.info("\t" + person.getName()));
+            family.forEach(person -> log.info("\t" + person));
         };
     }
 }
