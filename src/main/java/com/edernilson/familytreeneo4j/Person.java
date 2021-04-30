@@ -25,7 +25,7 @@ public class Person {
     }
 
     @Relationship
-    @JsonIgnoreProperties
+    @JsonIgnoreProperties({"familyMember"})
     public Map<PersonType, Person> familyMember;
 
     public void linkWith(PersonType type, Person person) {

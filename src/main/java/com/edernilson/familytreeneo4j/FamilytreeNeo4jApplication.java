@@ -48,10 +48,10 @@ public class FamilytreeNeo4jApplication {
 //            PersonRelationTypes pai = new PaiRelationType();
 //            filho.linkWith(eder);
 
-//            lara = personRepository.findByName(lara.getName());
-//            lara.linkWith(PersonType.FILHO, eder);
-//            lara.linkWith(PersonType.FILHO, gleiciane);
-//            personRepository.save(lara);
+            lara = personRepository.findByName(lara.getName());
+            lara.linkWith(PersonType.FILHO, eder);
+            lara.linkWith(PersonType.FILHO, gleiciane);
+            personRepository.save(lara);
 
             eder = personRepository.findByName(eder.getName());
             eder.linkWith(PersonType.PAI, lara);
