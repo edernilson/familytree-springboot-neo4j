@@ -41,13 +41,6 @@ public class FamilytreeNeo4jApplication {
             personRepository.save(gleiciane);
             personRepository.save(lara);
 
-//            PersonRelationTypes filho = new FilhoRelationType();
-//            filho.linkWith(lara);
-//            PersonRelationTypes conjuge = new ConjugeRelationType();
-//            filho.linkWith(gleiciane);
-//            PersonRelationTypes pai = new PaiRelationType();
-//            filho.linkWith(eder);
-
             lara = personRepository.findByName(lara.getName());
             lara.linkWith(PersonType.FILHO, eder);
             lara.linkWith(PersonType.FILHO, gleiciane);
