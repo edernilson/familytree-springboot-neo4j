@@ -26,22 +26,26 @@ public class Person {
 
     @Relationship
     @JsonIgnoreProperties({"familyMember"})
-    public Map<PersonType, Person> familyMember;
+    public Map<PersonType, List<Person>> familyMember;
 
     public void linkWith(PersonType type, Person person) {
         if (familyMember == null) {
             familyMember = new HashMap<>();
         }
-        familyMember.put(type, person);
+        List<Person> listOfPerson = familyMember.get(type);
+        if (listOfPerson == null) listOfPerson = new ArrayList<>();
+        listOfPerson.add(person);
+        familyMember.put(type, listOfPerson);
     }
 
     @Override
     public String toString() {
         return this.name + "s familymember => "
                 + Optional.ofNullable(this.familyMember).orElse(
-                Collections.emptyMap()).entrySet()
+                Collections.emptyMap())
+                .values()
                 .stream()
-                .map(Map.Entry::getValue)
+                .flatMap(Collection::stream)
                 .map(Person::getName)
                 .collect(Collectors.toList());
     }
